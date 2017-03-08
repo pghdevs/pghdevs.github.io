@@ -16523,19 +16523,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 (0, _reactTapEventPlugin2.default)();
 
-var styles = {
-    title: {
-        margin: '1em 0'
-    },
-    subTitle: {
-        fontFamily: 'Roboto Slab',
-        margin: '0 0 1em 0'
-    },
-    ctaButton: {
-        width: '200px'
-    }
-};
-
 var muiTheme = (0, _getMuiTheme2.default)({
     fontFamily: 'Roboto,sans-serif',
     palette: {
@@ -16562,6 +16549,22 @@ var muiTheme = (0, _getMuiTheme2.default)({
     }
 });
 
+var styles = {
+    title: {
+        margin: '1em 0'
+    },
+    subTitle: {
+        fontFamily: 'Roboto Slab',
+        margin: '0 0 1em 0'
+    },
+    ctaButton: {
+        width: '200px'
+    },
+    channels: {
+        color: _colors.deepPurple900
+    }
+};
+
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
 
@@ -16579,7 +16582,7 @@ var App = function (_React$Component) {
                 { muiTheme: muiTheme },
                 _react2.default.createElement(
                     'div',
-                    { className: 'parent' },
+                    null,
                     _react2.default.createElement(_AppBar2.default, {
                         iconElementLeft: _react2.default.createElement('span', null),
                         style: { textAlign: "center" },
@@ -16588,23 +16591,26 @@ var App = function (_React$Component) {
                             { style: styles.title },
                             _react2.default.createElement(
                                 'h1',
-                                null,
+                                { className: 'title' },
                                 'Pittsburgh Devs'
                             ),
                             _react2.default.createElement(
                                 'h3',
-                                null,
-                                'Slack Community Channel'
+                                { className: 'sub-title' },
+                                'A Slack community for Pitsburgh\'s developers, designers, makers, hackers and More'
                             )
                         )
                     }),
                     _react2.default.createElement(
                         CardFrame,
                         {
-                            className: 'child'
+                            className: 'list center'
                         },
-                        _react2.default.createElement(Home, null)
-                    )
+                        _react2.default.createElement(Home, null),
+                        _react2.default.createElement(Conduct, null),
+                        _react2.default.createElement(Team, null)
+                    ),
+                    _react2.default.createElement(Footer, null)
                 )
             );
         }
@@ -16630,8 +16636,97 @@ var App = function (_React$Component) {
 var Home = function Home() {
     return _react2.default.createElement(
         'section',
-        { className: 'grid center' },
-        _react2.default.createElement(_RaisedButton2.default, { href: 'https://pgh-devs.herokuapp.com', label: 'Join Our Slack Channel', secondary: true })
+        null,
+        _react2.default.createElement(
+            'div',
+            null,
+            'We have a number of active channels: ',
+            _react2.default.createElement(
+                'span',
+                { style: styles.channels },
+                '#general, #jobs, #announcements, #introductions, #meetups, #javascript, #java, #ruby'
+            ),
+            ' and more.'
+        ),
+        _react2.default.createElement(
+            'div',
+            { className: 'grid center top-1' },
+            _react2.default.createElement(_RaisedButton2.default, { target: '_blank', href: 'https://pgh-devs.herokuapp.com', label: 'Join The Community', secondary: true })
+        )
+    );
+};
+
+var Team = function Team() {
+    return _react2.default.createElement(
+        'section',
+        null,
+        _react2.default.createElement(
+            'h2',
+            null,
+            'Meet the Admin Team'
+        ),
+        _react2.default.createElement(
+            'ul',
+            null,
+            _react2.default.createElement(
+                'li',
+                null,
+                'Sam Alghanmi: Slack => ',
+                _react2.default.createElement(
+                    'a',
+                    { href: 'pgh-devs.slack.com/team/sam.alghanmi', style: { color: _colors.deepPurple600 } },
+                    'sam.alghanmi'
+                ),
+                ' || Twitter => ',
+                _react2.default.createElement(
+                    'a',
+                    { href: 'https://twitter.com/itechdom' },
+                    '@itechdom'
+                )
+            )
+        )
+    );
+};
+
+var Resources = function Resources() {
+    return _react2.default.createElement('section', null);
+};
+
+var PghMeetups = function PghMeetups() {
+    return _react2.default.createElement('section', null);
+};
+
+var Conduct = function Conduct() {
+    return _react2.default.createElement(
+        'section',
+        null,
+        _react2.default.createElement(
+            'h2',
+            null,
+            'Code of Conduct'
+        ),
+        _react2.default.createElement(
+            'p',
+            null,
+            'Pittsburgh Devs is dedicated to providing a harassment-free experience for everyone, regardless of gender identity or expression, sexual orientation, disability, physical appearance, body size, race, religion or non-religion. We do not tolerate harassment of participants in any form. Harassment includes offensive verbal comments related to gender, sexual orientation, disability, physical appearance, body size, race, religion, sexual images, deliberate intimidation, stalking, sustained disruption of discussions or other events, and unwelcome sexual attention. If a participant engages in behavior that violates this code of conduct, the organizers may take any action they deem appropriate, including warning the offender or expulsion from the group.'
+        )
+    );
+};
+
+var Footer = function Footer() {
+    return _react2.default.createElement(
+        'footer',
+        { style: { marginTop: '4em', padding: '2em', textAlign: 'center', backgroundColor: _colors.grey300 } },
+        _react2.default.createElement(
+            'p',
+            null,
+            'Reach out to : pghdevs@gmail.com with any questions. This website was inspired by the beautiful Denver Devs Communtiy: ',
+            _react2.default.createElement(
+                'a',
+                { href: 'https://denverdevs.org/' },
+                'https://denverdevs.org.'
+            )
+        )
     );
 };
 
@@ -16643,7 +16738,7 @@ var CardFrame = function CardFrame(_ref) {
         _react2.default.createElement(_Card.CardHeader, null),
         _react2.default.createElement(
             _Card.CardText,
-            null,
+            { className: 'content' },
             children
         )
     );
@@ -16693,10 +16788,6 @@ var Menu = function Menu(_ref2) {
             onActive: changeRoute
         })
     );
-};
-
-var Footer = function Footer() {
-    return _react2.default.createElement('footer', null);
 };
 
 _reactDom2.default.render(_react2.default.createElement(App), document.getElementById('app'));
@@ -43858,7 +43949,7 @@ exports = module.exports = __webpack_require__(134)();
 
 
 // module
-exports.push([module.i, "h1, h2, h3, h4, h5, h6 {\n  margin: 0px !important; }\n\nh3, h4, h5, h6 {\n  font-weight: normal; }\n\n/*-------------\r\n \tGeneral\r\n-------------*/\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nul, nav {\n  list-style: none; }\n\na {\n  text-decoration: none;\n  color: inherit;\n  cursor: pointer;\n  opacity: 0.9; }\n\na:hover {\n  opacity: 1; }\n\na.btn {\n  color: #fff;\n  border-radius: 4px;\n  text-transform: uppercase;\n  background-color: #2196F3;\n  font-weight: 800;\n  text-align: center; }\n\nsection {\n  padding: 0px 100px; }\n\nsection p {\n  text-align: center;\n  margin-bottom: 35px;\n  padding: 0 20px;\n  line-height: 2;\n  font-size: 1.5em; }\n\n.list {\n  width: 100%;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  flex-direction: column; }\n\n.list-item {\n  padding: 10px;\n  margin: 10px; }\n\n.grid {\n  width: 100%;\n  display: flex;\n  flex-wrap: wrap; }\n\n.grid.center {\n  justify-content: center; }\n\n.grid.start {\n  justify-content: flex-start; }\n\n.grid-item {\n  border-radius: 3px;\n  background-clip: content-box;\n  background-size: cover;\n  background-position: center;\n  margin: 10px !important; }\n\n.grid-item.small {\n  flex-basis: 40%; }\n\n@media (max-width: 1000px) {\n  section {\n    padding: 0px 0px; }\n  section p {\n    text-align: left; } }\n\n@media (max-width: 600px) {\n  section {\n    padding: 0px 0px; }\n  section p {\n    text-align: left; } }\n\n/** UTILS\r\n**/\n.bold {\n  font-weight: bold; }\n\n.text-center {\n  text-align: center; }\n\n.capital {\n  transform: uppercase; }\n\n.basis-10 {\n  flex-basis: 10%; }\n", ""]);
+exports.push([module.i, "h3, h4, h5, h6 {\n  font-weight: normal; }\n\n/*-------------\r\n \tGeneral\r\n-------------*/\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box; }\n\nul, nav {\n  list-style: none; }\n\na {\n  text-decoration: none;\n  color: inherit;\n  cursor: pointer;\n  opacity: 0.9;\n  color: #5e35b1; }\n\na:hover {\n  opacity: 1; }\n\na.btn {\n  color: #fff;\n  border-radius: 4px;\n  text-transform: uppercase;\n  background-color: #2196F3;\n  font-weight: 800;\n  text-align: center; }\n\n.content {\n  margin: 1em 10em !important; }\n\nsection {\n  margin-bottom: 6em; }\n\nsection h1 {\n  margin-bottom: 0.5em; }\n\nsection h2 {\n  margin-bottom: 0.5em; }\n\n.list {\n  width: 100%;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  flex-direction: column; }\n\n.list-item {\n  padding: 10px;\n  margin: 10px; }\n\n.grid {\n  width: 100%;\n  display: flex;\n  flex-wrap: wrap; }\n\n.center {\n  justify-content: center; }\n\n.grid.start {\n  justify-content: flex-start; }\n\n.grid-item {\n  border-radius: 3px;\n  background-clip: content-box;\n  background-size: cover;\n  background-position: center;\n  margin: 10px !important; }\n\n.grid-item.small {\n  flex-basis: 40%; }\n\n@media (max-width: 1000px) {\n  .content {\n    margin: 0px !important; }\n  section {\n    padding: 0px 0px; }\n  section p {\n    text-align: left; }\n  h1.title {\n    font-size: 1em; }\n  h3.sub-title {\n    font-size: 0.4em; } }\n\n@media (max-width: 600px) {\n  .content {\n    margin: 0px !important; }\n  section {\n    padding: 0px 0px; }\n  section p {\n    text-align: left; }\n  h1.title {\n    font-size: 1em; }\n  h3.sub-title {\n    font-size: 0.35em; } }\n\n/** UTILS\r\n**/\n.bold {\n  font-weight: bold; }\n\n.text-center {\n  text-align: center; }\n\n.capital {\n  transform: uppercase; }\n\n.basis-10 {\n  flex-basis: 10%; }\n\n.top-1 {\n  margin-top: 1em; }\n", ""]);
 
 // exports
 
